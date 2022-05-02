@@ -61,7 +61,15 @@ export class AnnonceComponent implements OnInit {
     );
     
    }
-
+   supprimer(annonce :any){
+    this.as.deleteannonce(annonce.id).subscribe(()=>this.as.getAllAnnonce().subscribe(
+      data=>{
+        this.listAnnonce=data
+        this.dataSource = new MatTableDataSource(this.listAnnonce);
+      }
+    )
+    );
+  }
   
   }
 

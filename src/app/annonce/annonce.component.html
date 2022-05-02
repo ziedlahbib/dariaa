@@ -178,7 +178,7 @@
                       <mat-cell *matCellDef="let row" class="text-right " >
                           <div >
                             <button  class="dropdown-item"  id="buttonstyle"  [routerLink]="['/annonces/modifier', row.id ]" style="background-color:#DC143C"  >modifier</button><br>
-                            <button  class="dropdown-item"  id="buttonstyle"  style="background-color: #FA8072;" >supprimer</button><br>
+                            <button  class="dropdown-item"  id="buttonstyle" (click)="supprimer(row)" style="background-color: #FA8072;" >supprimer</button><br>
 
                           </div>
                       

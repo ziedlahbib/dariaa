@@ -19,12 +19,14 @@ getannonceUrl="http://localhost:8089/SpringMVC/annonces/annonceById";
 updateannonceUrl="http://localhost:8089/SpringMVC/annonces/update-annonces";
 getfile="http://localhost:8089/SpringMVC/File/filesannonce";
 deletefiles="http://localhost:8089/SpringMVC/File/delete-file";
+deletetripsUrl="http://localhost:8089/SpringMVC/annonces/delete-annoncesp";
   constructor(private http: HttpClient) { 
 
     }
    getAllAnnonce():Observable<Annonce[]> {
      return this.http.get<Annonce[]>(`${this.getannonce}`)
    }
+
    ajoutAnnonce(annonce :Annonce): Observable<Annonce>{
     return this.http.post<Annonce>(`${this.addannonce}`,annonce);
   }
@@ -56,6 +58,9 @@ deletefiles="http://localhost:8089/SpringMVC/File/delete-file";
   }
   deletefile(id:Number): any{
     return this.http.delete(`${this.deletefiles}/${id}`);
+  }
+  deleteannonce(id:number): any{
+    return this.http.delete(`${this.deletetripsUrl}/${id}`);
   }
 
   }

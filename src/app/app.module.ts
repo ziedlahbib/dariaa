@@ -23,6 +23,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { ModifierAnnonceComponent } from './annonce/modifier-annonce/modifier-annonce.component';
+import { AnnoncefrontofficeComponent } from './annoncefrontoffice/annoncefrontoffice.component';
+import { CommentsandnoteannonceComponent } from './commentsandnoteannonce/commentsandnoteannonce.component';
+import { CommonModule } from '@angular/common'
+
 
 
 @NgModule({
@@ -31,6 +35,9 @@ import { ModifierAnnonceComponent } from './annonce/modifier-annonce/modifier-an
     AnnonceComponent,
     AjoutAnnonceComponent,
     ModifierAnnonceComponent,
+
+    AnnoncefrontofficeComponent,
+     CommentsandnoteannonceComponent,
    
 
   ],
@@ -50,6 +57,7 @@ import { ModifierAnnonceComponent } from './annonce/modifier-annonce/modifier-an
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
+    CommonModule
 
 
     

@@ -1,0 +1,125 @@
+<style>
+    body {
+    background-color: #eee
+}
+
+.bdge {
+    height: 21px;
+    background-color: orange;
+    color: #fff;
+    font-size: 11px;
+    padding: 8px;
+    border-radius: 4px;
+    line-height: 3px
+}
+
+.comments {
+    text-decoration: underline;
+    text-underline-position: under;
+    cursor: pointer
+}
+
+.dot {
+    height: 7px;
+    width: 7px;
+    margin-top: 3px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block
+}
+
+.hit-voting:hover {
+    color: blue
+}
+
+.hit-voting {
+    cursor: pointer
+}
+
+
+.height-100 {
+    height: 100vh
+}
+
+.card {
+    width: 380px;
+    border: none;
+    height: 280px
+}
+
+.ratings {
+    margin-right: 10px
+}
+
+.ratings i {
+    color: #cecece;
+    font-size: 32px
+}
+
+.rating-color {
+    color: #fbc634 !important
+}
+
+.review-count {
+    font-weight: 400;
+    margin-bottom: 2px;
+    font-size: 24px !important
+}
+
+.small-ratings i {
+    color: #cecece
+}
+
+.review-stat {
+    font-weight: 300;
+    font-size: 18px;
+    margin-bottom: 2px
+}
+</style>
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-center row">
+        <div class="d-flex flex-column col-md-8">
+            <div class="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4">
+                <div class="d-flex flex-column ml-3">
+                        <mat-card class="center" *ngIf="a" >
+                            <mat-card-title ><div >{{a.titre}}</div></mat-card-title>
+                            <mat-card-subtitle ><div >{{a.description}}</div></mat-card-subtitle>
+                            <mat-card-subtitle ><div >{{a.prix}}</div></mat-card-subtitle>
+                            <mat-card-subtitle ><div >{{a.transaction}}</div></mat-card-subtitle>
+                            <mat-card-subtitle ><div >{{a.typedebien}}</div></mat-card-subtitle>
+                            <mat-card-subtitle ><div >{{a.etat}}</div></mat-card-subtitle>
+                            <mat-card-subtitle ><div >{{a.localisation}}</div></mat-card-subtitle>
+                            <mat-card-subtitle ><div >{{a.superficie}}</div></mat-card-subtitle>
+                            <mat-card-subtitle ><div >{{a.nbrchambre}}</div></mat-card-subtitle>
+                            <mat-card-subtitle ><div >{{a.age}}</div></mat-card-subtitle>
+                            <mat-card-subtitle ><div >{{a.etage}}</div></mat-card-subtitle>
+                            <mat-card-subtitle ><div >{{a.numero}}</div></mat-card-subtitle>
+                            <mat-card-subtitle ><div >{{a.datecreation}}</div></mat-card-subtitle>
+                            <img *ngIf="a.files!!=null" src="http://localhost:8089/SpringMVC/File/files/{{a.files.id}}" height="500px" width="100%">
+                          </mat-card>
+            <div  class="coment-bottom bg-white p-2 px-4">
+                <div class="d-flex flex-row add-comment-section mt-4 mb-4"><img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="38"><form [formGroup]="commentaireform"><input type="text" class="form-control mr-3" placeholder="Add comment" formControlName="commentaire"></form><button class="btn btn-primary" type="button" (click)="ajouter(a.id)">Comment</button></div>
+                <ngb-rating [(rate)]="currentRate"></ngb-rating>
+                <hr>
+                <pre>Rate: <b>{{currentRate}}</b></pre>
+                <div *ngFor="let c of listcommentaire"  class="commented-section mt-2"  >
+                    <div class="d-flex flex-row align-items-center commented-user">
+                        <h5 class="mr-2">{{c.user.name}}</h5><span class="dot mb-1"></span>
+                    </div>
+                    <div class="comment-text-sm"><span>{{c.commentaire}}</span></div>
+                    <div class="reply-section">
+                        <div class="d-flex flex-row align-items-center voting-icons"><i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">10</span><span class="dot ml-2"></span>
+                            <h6 class="ml-2 mt-1">Reply</h6>
+                        </div>
+                    </div>
+                </div>
+            
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngb-rating [(rate)]="currentRate"></ngb-rating>
+<hr>
+<pre>Rate: <b>{{currentRate}}</b></pre>

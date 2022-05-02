@@ -1,0 +1,36 @@
+
+<div class="row row-cols-1 row-cols-md-3">
+    <div class="col mb-4"*ngFor="let a of listofannoncePagination">
+      <div class="card h-100" >
+        <img *ngIf="a.files!!=null" src="http://localhost:8089/SpringMVC/File/files/{{a.files.id}}" height="500px" width="100%">
+        <div class="card-body">
+            <mat-card-title ><div >{{a.titre}}</div></mat-card-title>
+            <mat-card-subtitle ><div >{{a.description}}</div></mat-card-subtitle>
+            <mat-card-subtitle ><div >{{a.prix}}</div></mat-card-subtitle>
+            <mat-card-subtitle ><div >{{a.transaction}}</div></mat-card-subtitle>
+            <mat-card-subtitle ><div >{{a.typedebien}}</div></mat-card-subtitle>
+            <mat-card-subtitle ><div >{{a.etat}}</div></mat-card-subtitle>
+            <mat-card-subtitle ><div >{{a.localisation}}</div></mat-card-subtitle>
+            <mat-card-subtitle ><div >{{a.superficie}}</div></mat-card-subtitle>
+            <mat-card-subtitle ><div >{{a.nbrchambre}}</div></mat-card-subtitle>
+            <mat-card-subtitle ><div >{{a.age}}</div></mat-card-subtitle>
+            <mat-card-subtitle ><div >{{a.etage}}</div></mat-card-subtitle>
+            <mat-card-subtitle ><div >{{a.numero}}</div></mat-card-subtitle>
+            <mat-card-subtitle ><div >{{a.datecreation}}</div></mat-card-subtitle>
+          <div class="card-body">
+            <a [routerLink]="['/detail', a.id ]" class="card-link">view comments</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+          <div class="col-12" *ngIf="listofannoncePagination">
+            <mat-paginator [length]="listAnnonce.length" [pageSize]="6" [pageSizeOptions]="[6, 12, 18]" (page)="paginate($event)">
+         
+            </mat-paginator>
+         
+          </div> 
+        
+  
+     
+

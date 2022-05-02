@@ -21,7 +21,7 @@ export class ModifierAnnonceComponent implements OnInit,AfterContentInit {
   progress = 0;
   message = '';
   fileInfos: Observable<any>;
-  listfiles:FileDB[]
+  listfiles:FileDB[]=[];
   file: FileDB;
   id:number;
   idf:number[];
@@ -55,7 +55,7 @@ export class ModifierAnnonceComponent implements OnInit,AfterContentInit {
         etage: [data?.etage, Validators.required],
         numero: [data?.numero, Validators.required],
         datecreation: [data?.datecreation, Validators.required],
-        //file: [null, Validators.required],
+        file: [null, Validators.required],
     
     
     })
