@@ -50,12 +50,39 @@ export class CommentsandnoteannonceComponent implements OnInit {
   }
   ajouter(annonceid:Number){
     
-    this.commentaireservice.ajoutcommentaire(this.commentaireform.value,annonceid,this.userid).subscribe(
+    this.commentaireservice.ajoutcommentaire(this.commentaireform.value,annonceid,1).subscribe(
       data=>{
         console.log(data)
         this.cmt=data;
+        this.commentaireservice.getcommentairebyannonce(this.router.snapshot.params.id).subscribe(
+          res=>{
+            this.listcommentaire=res;
+          }
+        )
        }
        );
+  }
+  modifier(id:Number){
+    this.commentaireservice.modifiercommentaire(id,this.commentaireform.value).subscribe(
+      data=>{
+        this.commentaireservice.getcommentairebyannonce(this.router.snapshot.params.id).subscribe(
+          res=>{
+            this.listcommentaire=res;
+          }
+        )
+      }
+
+    )
+  }
+  supprimer(cmt:any){
+
+    this.commentaireservice.deletecommentaire(cmt.id).subscribe(
+      ()=>this.commentaireservice.getcommentairebyannonce(this.router.snapshot.params.id).subscribe(
+        data=>{
+          this.listcommentaire=data;
+        }
+      )
+    )
   }
 
 }
