@@ -115,7 +115,7 @@
           <label class="btn btn-default">
             
             <input  type="file" (change)="selectFile($event);upload() " formControlName="file" />
-            <div  *ngIf="listfiles.length!==0" style="color: red;"><a style="font-weight: bold;">&#x2022;</a> required</div>
+            <div  *ngIf="listfiles.length==0" style="color: red;"><a style="font-weight: bold;">&#x2022;</a> required</div>
           </label>
         </div>
         </form>
