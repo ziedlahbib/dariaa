@@ -19,6 +19,7 @@ export class CommentsandnoteannonceComponent implements OnInit {
   a:Annonce;
   cmt:Commentaire;
   currentRate = 8;
+  userid=1;
   constructor(private as: AnnonceServiceService,private commentaireservice: CommentaireServiceService,private formBuilder: FormBuilder,private router:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -49,7 +50,7 @@ export class CommentsandnoteannonceComponent implements OnInit {
   }
   ajouter(annonceid:Number){
     
-    this.commentaireservice.ajoutcommentaire(this.commentaireform.value,annonceid,1).subscribe(
+    this.commentaireservice.ajoutcommentaire(this.commentaireform.value,annonceid,this.userid).subscribe(
       data=>{
         console.log(data)
         this.cmt=data;

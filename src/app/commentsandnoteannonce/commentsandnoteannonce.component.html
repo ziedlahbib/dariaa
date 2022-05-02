@@ -106,7 +106,14 @@
                     <div class="d-flex flex-row align-items-center commented-user">
                         <h5 class="mr-2">{{c.user.name}}</h5><span class="dot mb-1"></span>
                     </div>
-                    <div class="comment-text-sm"><span>{{c.commentaire}}</span></div>
+                    <div class="comment-text-sm"><span *ngIf="c.user.id!=userid">{{c.commentaire}}</span>
+                    <form *ngIf="c.user.id==userid" [formGroup]="commentaireform">
+                        <input type="text" class="form-control mr-3" placeholder="Add comment" formControlName="commentaire">
+                    
+                    <button class="btn btn-primary" type="button" (click)="ajouter(a.id)">Comment</button>
+                    </form>
+                    
+                    </div>
                     <div class="reply-section">
                         <div class="d-flex flex-row align-items-center voting-icons"><i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">10</span><span class="dot ml-2"></span>
                             <h6 class="ml-2 mt-1">Reply</h6>
@@ -120,6 +127,3 @@
     </div>
 </div>
 
-<ngb-rating [(rate)]="currentRate"></ngb-rating>
-<hr>
-<pre>Rate: <b>{{currentRate}}</b></pre>
