@@ -42,7 +42,7 @@ export class ModifierAnnonceComponent implements OnInit,AfterContentInit {
   }
   initForm(data) {
       this.annonceForm = this.formBuilder.group({
-        titre: [data?.titer, Validators.required],
+        titre: [data?.titre, Validators.required],
         description: [data?.description, [Validators.required, ,Validators.maxLength(50)]],
         prix: [data?.prix, Validators.required],
         transaction: [data?.transaction, Validators.required],
