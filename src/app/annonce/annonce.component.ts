@@ -52,6 +52,7 @@ export class AnnonceComponent implements OnInit {
   ngOnInit(): void {
     this.as.getAllAnnonce().subscribe(
      data=> {
+      console.log(data)
           this.listAnnonce=data;
           this.dataSource = new MatTableDataSource(this.listAnnonce);
           this.dataSource._renderChangesSubscription;
@@ -65,6 +66,7 @@ export class AnnonceComponent implements OnInit {
     this.as.deleteannonce(annonce.id).subscribe(()=>this.as.getAllAnnonce().subscribe(
       data=>{
         this.listAnnonce=data
+        
         this.dataSource = new MatTableDataSource(this.listAnnonce);
       }
     )
