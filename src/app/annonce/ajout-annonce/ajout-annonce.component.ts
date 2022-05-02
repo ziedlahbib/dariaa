@@ -22,7 +22,7 @@ export class AjoutAnnonceComponent implements OnInit {
   annonce:Annonce;
   fileInfos: Observable<any>;
   file: FileDB
-  constructor(private annonceservice:AnnonceServiceService,private router:Router,private formBuilder: FormBuilder) { }
+  constructor(private annonceservice:AnnonceServiceService,private router:Router,private route :Router,private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.initForm()
@@ -67,7 +67,7 @@ this.annonceservice.ajoutAnnonce(this.annonceForm.value).subscribe(
     this.annonceservice.affecterfileauannonce(this.annonce.id,this.file.id,this.annonce).subscribe(
       res=>{
        //this.listfile=res;
-       this.router.navigate(["/Annonce"])
+       this.route.navigate(["/Annonce"])
       }
    
   );

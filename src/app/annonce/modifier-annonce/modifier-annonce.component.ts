@@ -137,15 +137,10 @@ export class ModifierAnnonceComponent implements OnInit,AfterContentInit {
   this.selectedFiles = undefined;
     }
 
-    supprimer(files :Number){
-      this.annonceservice.deletefile(files).subscribe(
+    supprimer(files :any){
+      this.annonceservice.deletefile(files.id).subscribe(
         data=>{
-        this.annonceservice.getFiles(this.router.snapshot.params.id).subscribe(
-          data=>{
-            this.file=data
-            this.listfiles.push(this.file);
-        }
-      )
+          this.listfiles.splice(this.listfiles.indexOf(files),1)
     }
     );
     }  
