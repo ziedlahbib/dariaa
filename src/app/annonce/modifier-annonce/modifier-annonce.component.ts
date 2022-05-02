@@ -21,7 +21,7 @@ export class ModifierAnnonceComponent implements OnInit,AfterContentInit {
   progress = 0;
   message = '';
   fileInfos: Observable<any>;
-  listfiles:FileDB[];
+  listfiles:FileDB[]=[];
   file: FileDB;
   id:number;
   idf:number[];
@@ -75,50 +75,15 @@ export class ModifierAnnonceComponent implements OnInit,AfterContentInit {
 
     this.annonceservice.updateannonce(this.router.snapshot.params.id,this.annonceForm.value).subscribe(
       data=>{
-        
-        this.progress = 0;
-        this.currentFile = this.selectedFiles.item(0);
-       this.annonceservice.upload(this.currentFile).subscribe(
-          event => {
-            if (event.type === HttpEventType.UploadProgress) {
-              this.progress = Math.round(100 * event.loaded / event.total);
-            } else if (event instanceof HttpResponse) {
-              this.message = event.body.message;
-              this.id=event.body;
-              
-              this.annonceservice.getFilesdetail(this.id).subscribe(
-                data=>{
-                  this.file=data;
-                  console.log(this.id)
-                  console.log('file',this.file)
-                  console.log(this.router.snapshot.params.id)
-                  //this.idf=[];
-                  //this.idf.push(this.id);
-                  this.annonceservice.affecterfileauannonce(this.router.snapshot.params.id,this.id,this.annonce).subscribe(
-      
-                    ()=>this.annonceservice.getFiles(this.router.snapshot.params.id).subscribe(
-                      res=>{
-                        this.file=res
-                        this.listfiles.push(this.file);
-                        this.route.navigate(["/Annonce"])
-                      }
-                    )
-                  )
-                  
-                  
-                }
-              );
-              //this.fileInfos = this.tripservice.getFiles(this.router.snapshot.params.id);
-            
-            
-            }
-          },
-          err => {
-            this.progress = 0;
-            this.message = 'Could not upload the file!';
-            this.currentFile = undefined;
-          });
-        this.selectedFiles = undefined;
+         console.log(data)
+        this.annonce=data;
+        this.annonceservice.affecterfileauannonce(this.annonce.id,this.file.id,this.annonce).subscribe(
+          res=>{
+           //this.listfile=res;
+           this.route.navigate(["/Annonce"])
+          }
+       
+      );
       }
     );
     }
@@ -151,7 +116,7 @@ export class ModifierAnnonceComponent implements OnInit,AfterContentInit {
                 res=>{
                   this.file=res
                       this.listfiles.push(this.file);
-                      this.route.navigate(["/Annonce"])
+                   
                 }
               )
             )
