@@ -1,0 +1,122 @@
+<div style="margin: 15px;">
+    <form [formGroup]="annonceForm">
+        <div class="form-group row">
+        <label for="example-text-input" class="col-2 col-form-label">Titre</label>
+        <div class="col-10">
+          <input class="form-control" type="text"   formControlName="titre">
+         <div *ngIf="  annonceForm.get('titre').hasError('required')" style="color: red;"><a style="font-weight: bold;">&#x2022;</a> required</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-search-input" class="col-2 col-form-label">Description</label>
+        <div class="col-10">
+          <input class="form-control" type="text" formControlName="description">
+          <div *ngIf="  annonceForm.get('description').hasError('required')" style="color: red;"><a style="font-weight: bold;">&#x2022;</a> required</div>
+          <div *ngIf="  annonceForm.get('description').hasError('maxlength')" style="color: red;"> <a style="font-weight: bold;">&#x2022;</a>object must at maiximum 50 character</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-date-input" class="col-2 col-form-label">prix</label>
+        <div class="col-10">
+          <input class="form-control" type="text"   formControlName="prix">
+          <div *ngIf="  annonceForm.get('prix').hasError('required')" style="color: red;"><a style="font-weight: bold;">&#x2022;</a> required</div>
+          
+        </div>
+      </div>
+      <div class="form-group row">
+        <label>transaction</label>
+        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"  formControlName="transaction">
+            <option value="Vente">Vente</option>
+            <option value="location">location</option>
+            <option value="location_vacances">location_vacances</option>
+          </select>
+          <div *ngIf="  annonceForm.get('transaction').hasError('required')" style="color: red;"><a style="font-weight: bold;">&#x2022;</a> required</div>
+      </div>
+
+      <div class="form-group row">
+        <label >type de bien</label>
+          <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" formControlName="typedebien">
+            <option value="Appartement">Appartement</option>
+            <option value="villa">villa</option>
+            <option value="bureau">bureau</option>
+            <option value="studio">studio</option>
+            <option value="terrain">terrain</option>
+           
+          </select>
+          <div *ngIf="  annonceForm.get('typedebien').hasError('required')" style="color: red;"><a style="font-weight: bold;">&#x2022;</a> required</div>
+      </div>
+      <div class="form-group row">
+        <label >etat</label>
+        <select  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" formControlName="etat">
+            <option value="a_renouvler">a_renouvler</option>
+            <option value="bon_etat">bon_etat</option>
+            <option value="neuf">neuf</option>
+          </select>
+          <div *ngIf="  annonceForm.get('etat').hasError('required')" style="color: red;"><a style="font-weight: bold;">&#x2022;</a> required</div>
+      </div>
+      <div class="form-group row">
+        <label for="example-date-input" class="col-2 col-form-label">localisation</label>
+        <div class="col-10">
+          <input class="form-control" type="text"   formControlName="localisation">
+          <div *ngIf="  annonceForm.get('localisation').hasError('required')" style="color: red;"><a style="font-weight: bold;">&#x2022;</a> required</div>
+          
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-date-input" class="col-2 col-form-label">superficie</label>
+        <div class="col-10">
+          <input class="form-control" type="text"   formControlName="superficie">
+          <div *ngIf="  annonceForm.get('superficie').hasError('required')" style="color: red;"><a style="font-weight: bold;">&#x2022;</a> required</div>
+          
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-date-input" class="col-2 col-form-label">nombre chambre</label>
+        <div class="col-10">
+          <input class="form-control" type="text"   formControlName="nbrchambre">
+          <div *ngIf="  annonceForm.get('nbrchambre').hasError('required')" style="color: red;"><a style="font-weight: bold;">&#x2022;</a> required</div>
+          
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-date-input" class="col-2 col-form-label">age</label>
+        <div class="col-10">
+          <input class="form-control" type="text"   formControlName="age">
+          <div *ngIf="  annonceForm.get('age').hasError('required')" style="color: red;"><a style="font-weight: bold;">&#x2022;</a> required</div>
+          
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-date-input" class="col-2 col-form-label">etage</label>
+        <div class="col-10">
+          <input class="form-control" type="text"   formControlName="etage">
+          <div *ngIf="  annonceForm.get('etage').hasError('required')" style="color: red;"><a style="font-weight: bold;">&#x2022;</a> required</div>
+          
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-date-input" class="col-2 col-form-label">numero</label>
+        <div class="col-10">
+          <input class="form-control" type="text"   formControlName="numero">
+          <div *ngIf="  annonceForm.get('numero').hasError('required')" style="color: red;"><a style="font-weight: bold;">&#x2022;</a> required</div>
+          
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-date-input" class="col-2 col-form-label">date creation</label>
+        <div class="col-10">
+          <input class="form-control" type="date" value="2011-08-19" formControlName="datecreation">
+          <div *ngIf="  annonceForm.get('datecreation').hasError('required')" style="color: red;"><a style="font-weight: bold;">&#x2022;</a> required</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-date-input" class="col-2 col-form-label">Image</label>
+      <label class="btn btn-default">
+        <input type="file" (change)="selectFile($event);upload()" formControlName="file" />
+        
+      </label>
+    </div>
+   </form>
+      <button type="submit" class="btn btn-primary" (click)="ajouter()" [disabled]="annonceForm.invalid" >submit</button>
+</div>
+

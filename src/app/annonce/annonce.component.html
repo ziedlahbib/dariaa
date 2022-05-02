@@ -1,0 +1,197 @@
+
+<style type="text/css">
+    #ajouter { color: white;
+                background-color: rgb(52, 114, 207);
+                border-radius: 30%; } 
+    #imageid{
+            top: 50px;
+                } 
+  
+  
+  
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 500px;
+    
+  }
+  
+  .example-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    max-height: 700px;
+  }
+  #buttonstyle {
+    color: blanchedalmond;
+    border: #FAFAD2;;
+    height: 40px;
+    width: 110px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 20%;
+    font-size: 16px;
+    margin: 10px 50px 20px;
+    
+  }
+  .matrowstyle {
+          overflow: auto;
+          
+          
+          
+  }
+  .contenue{
+   bottom:12px;
+  }
+  #btnControl {
+      display: none;
+  }
+  
+  #btnControl+ label > img {
+      width: 70px;
+      height: 74px;
+  }
+  
+  </style>
+
+      <div>
+      <button id="ajouter" id="buttonstyle" style="background-color:#14dc49" routerLink="/ajoutAnnonce">ajouter</button>
+    <button id="ajouter" id="buttonstyle" style="background-color: #FA8072;" >search</button>
+    <button id="ajouter" id="buttonstyle"  style="background-color: #00CED1"  >acceuil</button>
+    </div>
+    
+   
+      
+      
+              
+                <div class="example-header">
+                  <mat-form-field>
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="search" >
+                  </mat-form-field>
+                </div>
+                
+                
+                
+                  <mat-table [dataSource]="dataSource" matSort class="table align-items-center table-flush">
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="image">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> image </mat-header-cell>
+                      <mat-cell *matCellDef="let row" > 
+                        <ng-container  >
+                          
+  
+                        <div   class="matrowstyle" >
+                          <input type="checkbox" id="btnControl"/>
+                          <label class="btn" for="btnControl" >
+                            <img *ngIf="row.files!!=null" src="http://localhost:8089/SpringMVC/File/files/{{row.files.id}}" id="btnLeft" /></label>                    
+                        </div>
+                        
+                      </ng-container>
+                    </mat-cell>
+                    </ng-container>
+                    
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="titre">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header > titre </mat-header-cell>
+                      <mat-cell *matCellDef="let row" >
+                        <div class="matrowstyle">
+                          {{row.titre}}
+                        </div>
+                        
+                        
+                      </mat-cell>
+                    </ng-container>
+                
+                    <!-- Progress Column -->
+                    <ng-container matColumnDef="description">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> description </mat-header-cell>
+                      <mat-cell *matCellDef="let row"  > <div > {{row.description}}  </div></mat-cell>
+                    </ng-container>
+                
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="prix">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> prix </mat-header-cell>
+                      <mat-cell *matCellDef="let row"  > <div >{{row.prix}} </div></mat-cell>
+                    </ng-container>
+                
+                    <!-- Color Column -->
+                    <ng-container matColumnDef="transaction">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> transaction </mat-header-cell>
+                      <mat-cell *matCellDef="let row"  ><div class="matrowstyle"> {{row.transaction}} </div> </mat-cell>
+                    </ng-container>
+                     <!-- Color Column -->
+                     <ng-container matColumnDef="typedebien">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> typedebien </mat-header-cell>
+                      <mat-cell *matCellDef="let row"  > <div class="matrowstyle">{{row.typedebien}}</div> </mat-cell>
+                    </ng-container>
+                    <!-- Color Column -->
+                    <ng-container matColumnDef="etat">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> etat </mat-header-cell>
+                        <mat-cell *matCellDef="let row"  > <div class="matrowstyle">{{row.etat}}</div> </mat-cell>
+                      </ng-container>
+                      <!-- Color Column -->
+                     <ng-container matColumnDef="localisation">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> localisation </mat-header-cell>
+                        <mat-cell *matCellDef="let row"  > <div class="matrowstyle">{{row.localisation}}</div> </mat-cell>
+                      </ng-container>
+                      <!-- Color Column -->
+                     <ng-container matColumnDef="superficie">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> superficie </mat-header-cell>
+                        <mat-cell *matCellDef="let row"  > <div class="matrowstyle">{{row.superficie}}</div> </mat-cell>
+                      </ng-container>
+                      <!-- Color Column -->
+                     <ng-container matColumnDef="nbrchambre">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> nombre chambre </mat-header-cell>
+                        <mat-cell *matCellDef="let row"  > <div class="matrowstyle">{{row.nbrchambre}}</div> </mat-cell>
+                      </ng-container>
+                       <!-- Color Column -->
+                     <ng-container matColumnDef="age">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> age </mat-header-cell>
+                        <mat-cell *matCellDef="let row"  > <div class="matrowstyle">{{row.age}}</div> </mat-cell>
+                      </ng-container>
+                       <!-- Color Column -->
+                     <ng-container matColumnDef="etage">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> etage </mat-header-cell>
+                        <mat-cell *matCellDef="let row"  > <div class="matrowstyle">{{row.etage}}</div> </mat-cell>
+                      </ng-container>
+                       <!-- Color Column -->
+                     <ng-container matColumnDef="numero">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> numero </mat-header-cell>
+                        <mat-cell *matCellDef="let row"  > <div class="matrowstyle">{{row.numero}}</div> </mat-cell>
+                      </ng-container>
+                       <!-- Color Column -->
+                     <ng-container matColumnDef="datecreation">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> date creation </mat-header-cell>
+                        <mat-cell *matCellDef="let row"  > <div class="matrowstyle">{{row.datecreation}}</div> </mat-cell>
+                      </ng-container>
+                    <ng-container matColumnDef="option" >
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> option </mat-header-cell>
+                      <mat-cell *matCellDef="let row" class="text-right " >
+                          <div >
+                            <button  class="dropdown-item"  id="buttonstyle"  [routerLink]="['/annonces/modifier', row.id ]" style="background-color:#DC143C"  >modifier</button><br>
+                            <button  class="dropdown-item"  id="buttonstyle"  style="background-color: #FA8072;" >supprimer</button><br>
+
+                          </div>
+                      
+                        
+                        
+                       </mat-cell>
+                    </ng-container>
+                
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;">
+                    </mat-row>
+                  </mat-table>
+                  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                 
+            
+    
