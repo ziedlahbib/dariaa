@@ -24,7 +24,8 @@ export class CommentsandnoteannonceComponent implements OnInit {
   cmt:Commentaire;
   moyenne:Number;
   currentRate =8;
-  userid=1;
+ 
+  userconn=1;
   constructor(private as: AnnonceServiceService,private commentaireservice: CommentaireServiceService,private avisservice:AvisServiceService,private formBuilder: FormBuilder,private router:ActivatedRoute)
    { this.feedback = new Avis()}
 
@@ -63,7 +64,7 @@ export class CommentsandnoteannonceComponent implements OnInit {
   }
   ajouter(annonceid:Number){
     
-    this.commentaireservice.ajoutcommentaire(this.commentaireform.value,annonceid,1).subscribe(
+    this.commentaireservice.ajoutcommentaire(this.commentaireform.value,annonceid,this.userconn).subscribe(
       data=>{
         console.log(data)
         this.cmt=data;

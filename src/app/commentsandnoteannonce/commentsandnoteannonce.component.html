@@ -110,8 +110,8 @@
                     <div class="d-flex flex-row align-items-center commented-user">
                         <h5 class="mr-2">{{c.user.name}}</h5><span class="dot mb-1"></span>
                     </div>
-                    <div class="comment-text-sm"><span *ngIf="c.user.id!=userid">{{c.commentaire}}</span>
-                    <form *ngIf="c.user.id==userid" [formGroup]="commentaireform">
+                    <div class="comment-text-sm"><span *ngIf="c.user.id!=userconn">{{c.commentaire}}</span>
+                    <form *ngIf="c.user.id==userconn" [formGroup]="commentaireform">
                         <input type="text" class="form-control mr-3" placeholder={{c.commentaire}} formControlName="commentaire">
                     
                     <button class="btn btn-primary" type="button" (click)="modifier(c.id)">modifier</button>
