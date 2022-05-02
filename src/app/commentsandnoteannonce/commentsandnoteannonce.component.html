@@ -1,4 +1,5 @@
 <style>
+    
     body {
     background-color: #eee
 }
@@ -96,12 +97,15 @@
                             <mat-card-subtitle ><div >{{a.numero}}</div></mat-card-subtitle>
                             <mat-card-subtitle ><div >{{a.datecreation}}</div></mat-card-subtitle>
                             <img *ngIf="a.files!!=null" src="http://localhost:8089/SpringMVC/File/files/{{a.files.id}}" height="500px" width="100%">
+                           
+                            <mat-card-title ><div >Rate : {{moyenne}}</div></mat-card-title>
                           </mat-card>
+                          
             <div  class="coment-bottom bg-white p-2 px-4">
                 <div class="d-flex flex-row add-comment-section mt-4 mb-4"><img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="38"><form [formGroup]="commentaireform"><input type="text" class="form-control mr-3" placeholder="Add comment" formControlName="commentaire"></form><button class="btn btn-primary" type="button" (click)="ajouter(a.id)">Comment</button></div>
-                <ngb-rating [(rate)]="currentRate"></ngb-rating>
+                <ngb-rating [(rate)]="currentRate"  ></ngb-rating>
                 <hr>
-                <pre>Rate: <b>{{currentRate}}</b></pre>
+                <pre>Rate: {{currentRate}} <button (click)="addFeedback(a.id,1,currentRate)">rate</button></pre>
                 <div *ngFor="let c of listcommentaire"  class="commented-section mt-2"  >
                     <div class="d-flex flex-row align-items-center commented-user">
                         <h5 class="mr-2">{{c.user.name}}</h5><span class="dot mb-1"></span>

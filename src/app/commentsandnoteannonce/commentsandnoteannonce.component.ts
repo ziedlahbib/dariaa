@@ -6,6 +6,8 @@ import { Commentaire } from '../Class/commentaire.model';
 import { AnnonceServiceService } from '../Service/annonce-service.service';
 import { CommentaireServiceService } from '../Service/commentaire-service.service';
 import { CommonModule } from '@angular/common'
+import { Avis } from '../Class/avis.model';
+import { AvisServiceService } from '../Service/avis-service.service';
 
 @Component({
   selector: 'app-commentsandnoteannonce',
@@ -16,13 +18,18 @@ export class CommentsandnoteannonceComponent implements OnInit {
 
   listcommentaire:Commentaire[];
   public commentaireform: FormGroup;
+  feedback:Avis;
+  public feedbackForm: FormGroup;
   a:Annonce;
   cmt:Commentaire;
-  currentRate = 8;
+  moyenne:Number;
+  currentRate =8;
   userid=1;
-  constructor(private as: AnnonceServiceService,private commentaireservice: CommentaireServiceService,private formBuilder: FormBuilder,private router:ActivatedRoute) { }
+  constructor(private as: AnnonceServiceService,private commentaireservice: CommentaireServiceService,private avisservice:AvisServiceService,private formBuilder: FormBuilder,private router:ActivatedRoute)
+   { this.feedback = new Avis()}
 
   ngOnInit(): void {
+    
     this.initForm();
     this.commentaireservice.getcommentairebyannonce(this.router.snapshot.params.id).subscribe(
       data=>{
@@ -35,7 +42,13 @@ export class CommentsandnoteannonceComponent implements OnInit {
         console.log(this.a)
       }
     )
+    this.avisservice.moyenneparannonce(this.router.snapshot.params.id).subscribe(
+      data=>{
+        this.moyenne=data;
+      }
+    )
   }
+
   initForm() {
   
     this.commentaireform = this.formBuilder.group({
@@ -84,5 +97,21 @@ export class CommentsandnoteannonceComponent implements OnInit {
       )
     )
   }
+  addFeedback(ida:Number,idu :Number,note:Number){
+    this.avisservice.ajoutavis(this.feedback,ida,idu,this.currentRate).subscribe(
+      
+      data=>{
+        console.log(data);
+        this.avisservice.moyenneparannonce(this.router.snapshot.params.id).subscribe(
+          data=>{
+            this.moyenne=data;
+          }
+        )
+      
+      }
+    );
+    
+  }
+
 
 }
