@@ -145,7 +145,16 @@ export class ModifierAnnonceComponent implements OnInit,AfterContentInit {
                 //this.idf=[];
                 //this.idf.push(this.id);
                 
-  
+                this.annonceservice.affecterfileauannonce(this.router.snapshot.params.id,this.id,this.annonce).subscribe(
+      
+                  ()=>this.annonceservice.getFiles(this.router.snapshot.params.id).subscribe(
+                    res=>{
+                      this.file=res
+                      this.listfiles.push(this.file);
+                      this.route.navigate(["/Annonce"])
+                    }
+                  )
+                )
                 
                 
               }

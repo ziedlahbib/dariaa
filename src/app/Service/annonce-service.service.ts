@@ -19,7 +19,7 @@ getannonceUrl="http://localhost:8089/SpringMVC/annonces/annonceById";
 updateannonceUrl="http://localhost:8089/SpringMVC/annonces/update-annonces";
 getfile="http://localhost:8089/SpringMVC/File/filesannonce";
 deletefiles="http://localhost:8089/SpringMVC/File/delete-file";
-deletetripsUrl="http://localhost:8089/SpringMVC/annonces/delete-annoncesp";
+deletetripsUrl="http://localhost:8089/SpringMVC/annonces/delete-annonces";
   constructor(private http: HttpClient) { 
 
     }
@@ -44,7 +44,7 @@ deletetripsUrl="http://localhost:8089/SpringMVC/annonces/delete-annoncesp";
     return this.http.get<FileDB>(`${this.getfiledetail}/${id}`);
   }
   affecterfileauannonce(id:Number,idf:number,annonce :Annonce):Observable<Annonce>{
-    return this.http.put<Annonce>("http://localhost:8089/SpringMVC/Trip/affecter-fileToAnnonce/"+id+"/"+idf,annonce);
+    return this.http.put<Annonce>("http://localhost:8089/SpringMVC/annonces/affecter-fileToAnnonce/"+id+"/"+idf,annonce);
   }
   getAnnonce(id:number): Observable<Annonce>{
     return this.http.get<Annonce>(`${this.getannonceUrl}/${id}`);
@@ -60,7 +60,7 @@ deletetripsUrl="http://localhost:8089/SpringMVC/annonces/delete-annoncesp";
     return this.http.delete(`${this.deletefiles}/${id}`);
   }
   deleteannonce(id:number): any{
-    return this.http.delete(`${this.deletetripsUrl}/${id}`);
+    return this.http.delete(`${this.deletetripsUrl}/${id}`,{ responseType: 'text' });
   }
 
   }

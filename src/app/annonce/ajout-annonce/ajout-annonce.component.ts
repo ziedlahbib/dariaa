@@ -50,7 +50,7 @@ export class AjoutAnnonceComponent implements OnInit {
     etage: ['', Validators.required],
     numero: ['', Validators.required],
     datecreation: ['', Validators.required],
-    //file: [null, Validators.required],
+    file: [null, Validators.required],
 
 });
 this.annonceForm.valueChanges.subscribe(
@@ -60,12 +60,24 @@ this.annonceForm.valueChanges.subscribe(
 
 ajouter(){
   console.log(this.annonceForm.value);
-  this.annonceservice.ajoutAnnonce(this.annonceForm.value).subscribe(
-    data=>{
-      console.log(data)
-      this.annonce=data;
-          if(this.file!=null){
-            this.annonceservice.affecterfileauannonce(this.annonce.id,this.file.id,this.annonce).subscribe(
+this.annonceservice.ajoutAnnonce(this.annonceForm.value).subscribe(
+  data=>{
+    console.log(data)
+    this.annonce=data;
+    this.progress = 0;
+  this.currentFile = this.selectedFiles.item(0);
+  this.annonceservice.upload(this.currentFile).subscribe(
+    event => {
+      if (event.type === HttpEventType.UploadProgress) {
+        this.progress = Math.round(100 * event.loaded / event.total);
+      } else if (event instanceof HttpResponse) {
+        this.message = event.body.message;
+        this.annonceservice.getFilesdetail(event.body).subscribe(
+          res=>{
+            this.file=res;
+            console.log(this.annonce)
+            console.log(res)
+            this.annonceservice.affecterfileauannonce(this.annonce.id,res.id,this.annonce).subscribe(
               res=>{
                //this.listfile=res;
                this.router.navigate(["/Annonce"])
@@ -73,14 +85,18 @@ ajouter(){
            
           );
           }
-            
-           
-          
-      }
+        );
 
-      
-  
-  );
+      }
+    },
+    err => {
+      this.progress = 0;
+      this.message = 'Could not upload the file!';
+      this.currentFile = undefined;
+    });
+  this.selectedFiles = undefined;
+ }
+);
   }
 
   selectFile(event) {
