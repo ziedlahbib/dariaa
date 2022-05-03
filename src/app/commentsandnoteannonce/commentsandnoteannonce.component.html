@@ -110,13 +110,22 @@
                     <div class="d-flex flex-row align-items-center commented-user">
                         <h5 class="mr-2">{{c.user.name}}</h5><span class="dot mb-1"></span>
                     </div>
-                    <div class="comment-text-sm"><span *ngIf="c.user.id!=userconn">{{c.commentaire}}</span>
-                    <form *ngIf="c.user.id==userconn" [formGroup]="commentaireform">
-                        <input type="text" class="form-control mr-3" placeholder={{c.commentaire}} formControlName="commentaire">
+                   
+                    <ng-container  [formGroup]="modifiercommentaire">
+                        
+                        
+                        <input *ngIf="c.user.id==userconn"#tbName id="tbName" type="text" class="form-control mr-3" formControlName="commentaire">
+                        <ng-container>
+                            <p>
+                                <label #lblName id="lblName">
+                                    {{c.commentaire}}
+                                </label>
+                            </p>
+                        </ng-container>
                     
-                    <button class="btn btn-primary" type="button" (click)="modifier(c.id)">modifier</button>
-                    <button class="btn btn-primary" type="button" (click)="supprimer(c)">supprimer</button>
-                    </form>
+                    <button *ngIf="c.user.id==userconn" class="btn btn-primary" type="button" (click)="modifier(c.id)">modifier</button>
+                    <button *ngIf="c.user.id==userconn" class="btn btn-primary" type="button" (click)="supprimer(c)">supprimer</button>
+                    </ng-container>
                     
                     </div>
                 </div>
